@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danna 💖</title>
+
+<style>
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: white;
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+#countdown {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#yes {
+    background-color: #ff4d88;
+    color: white;
+}
+
+#no {
+    background-color: white;
+    color: #ff4d88;
+    position: absolute;
+}
+</style>
+</head>
+
+<body onclick="playMusic()">
+
+<h1>Danna 💕</h1>
+<h2>¿Aceptas ser mi San Valentín?</h2>
+
+<div id="countdown"></div>
+
+<button id="yes" onclick="accept()">Sí 💖</button>
+<button id="no" onmouseover="moveButton()">No 😢</button>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Cuenta regresiva para 14 Febrero 5:00 PM (ajusta año si es necesario)
+var targetDate = new Date("February 14, 2026 17:00:00").getTime();
+
+var countdownFunction = setInterval(function() {
+
+  var now = new Date().getTime();
+  var distance = targetDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+  "Faltan: " + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s 💘";
+
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("countdown").innerHTML =
+    "¡Es nuestra cita ahora! 💞";
+  }
+
+}, 1000);
+
+function moveButton() {
+  var button = document.getElementById("no");
+  var x = Math.random() * (window.innerWidth - 100);
+  var y = Math.random() * (window.innerHeight - 50);
+  button.style.left = x + "px";
+  button.style.top = y + "px";
+}
+
+function accept() {
+  document.body.innerHTML = `
+    <h1>Sabía que dirías que sí 💖</h1>
+    <h2>Te espero este 14 a las 5:00 PM 💘</h2>
+    <p>Prepárate para una sorpresa muy especial, Danna ✨</p>
+  `;
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+</script>
+
+</body>
+</html>
